@@ -11,8 +11,7 @@ import java.util.List;
 @RequestMapping("/api/admin")
 @CrossOrigin(origins = "http://localhost:5173")
 public class AdminController {
-    private final LocationSer
-    ;;;vice locationService;
+    private final LocationService locationService;
 
     public AdminController(LocationService locationService) {
         this.locationService = locationService;
