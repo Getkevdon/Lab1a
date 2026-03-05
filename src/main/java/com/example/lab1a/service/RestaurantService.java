@@ -20,9 +20,6 @@ public class RestaurantService {
         this.locationRepository = locationRepository;
     }
 
-    public List<Restaurant> getAllRestaurants(){
-        return restaurantRepository.findAll();
-    }
     public List<Restaurant> getRestaurantsByLocation(Long locationId){
         if (!locationRepository.existsById(locationId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Location not found with id " + locationId);
@@ -30,7 +27,7 @@ public class RestaurantService {
         return restaurantRepository.findByLocationId(locationId);
     }
 
-    public Restaurant createRestaurant(Long locationId, Restaurant restaurant){
+    public Restaurant addRestaurant(Long locationId, Restaurant restaurant){
         Location location = locationRepository.findById(locationId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,  "Location not found with id " + locationId));
 

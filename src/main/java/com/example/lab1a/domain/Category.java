@@ -11,25 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "restaurant")
+@Table(name = "category")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Restaurant {
+public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long categoryId;
+
+
 
     private String name;
-    private String phone;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "locationId")
+    @JoinColumn(name = "restaurantId")
     @JsonBackReference
-    private Location location;
+    private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Category> categories = new ArrayList<>();
+    private List<MenuItem> menuItems = new ArrayList<>();
 
 }
